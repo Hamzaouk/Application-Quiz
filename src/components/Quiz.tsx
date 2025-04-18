@@ -121,10 +121,10 @@ const QuizContainer = () => {
 
   if (quizState.isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-gray-700">Loading questions...</p>
+          <div className="w-20 h-20 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="mt-6 text-gray-700 font-medium">Loading your questions...</p>
         </div>
       </div>
     );
@@ -132,14 +132,14 @@ const QuizContainer = () => {
 
   if (quizState.error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="bg-white p-6 rounded-lg shadow-md max-w-md w-full text-center">
-          <div className="text-red-600 text-5xl mb-4">⚠️</div>
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">Error</h2>
-          <p className="text-gray-600 mb-4">{quizState.error}</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100">
+        <div className="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center border border-red-100">
+          <div className="text-red-600 text-6xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-3">Error</h2>
+          <p className="text-gray-600 mb-6">{quizState.error}</p>
           <button 
             onClick={() => window.location.reload()}
-            className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+            className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 font-medium shadow-md"
           >
             Try Again
           </button>
@@ -152,12 +152,14 @@ const QuizContainer = () => {
   const progress = ((quizState.currentQuestionIndex + 1) / quizState.questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-        <div className="p-6">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 py-8 px-4">
+      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-indigo-100">
+        <div className="p-8">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-800">Trivia Master Quiz</h1>
-            <div className="text-gray-600">Hi, {playerName}!</div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Trivia Master</h1>
+            <div className="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full font-medium border border-indigo-100">
+              {playerName}
+            </div>
           </div>
           
           <ProgressBar 

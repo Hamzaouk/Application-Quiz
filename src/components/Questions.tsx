@@ -45,38 +45,47 @@ const Question: React.FC<QuestionProps> = ({
 
   // Difficulty badge color
   const difficultyColor = {
-    easy: 'bg-green-100 text-green-800',
-    medium: 'bg-yellow-100 text-yellow-800',
-    hard: 'bg-red-100 text-red-800'
-  }[question.difficulty.toLowerCase()] || 'bg-gray-100 text-gray-800';
+    easy: 'bg-green-100 text-green-800 border-green-200',
+    medium: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    hard: 'bg-red-100 text-red-800 border-red-200'
+  }[question.difficulty.toLowerCase()] || 'bg-gray-100 text-gray-800 border-gray-200';
 
   return (
     <div className="mb-8">
       <div className="flex gap-2 mb-4">
-        <span className="px-2 py-1 text-xs font-medium rounded bg-blue-100 text-blue-800">
+        <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800 border border-blue-200">
           {decodeHTML(question.category)}
         </span>
-        <span className={`px-2 py-1 text-xs font-medium rounded ${difficultyColor}`}>
+        <span className={`px-3 py-1 text-xs font-medium rounded-full ${difficultyColor} border`}>
           {question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1)}
         </span>
       </div>
       
-      <h2 className="text-xl font-semibold text-gray-800 mb-6">
-        {decodeHTML(question.question)}
-      </h2>
+      <div className="bg-indigo-50 p-4 rounded-lg mb-6 border border-indigo-100">
+        <h2 className="text-xl font-medium text-gray-800">
+          {decodeHTML(question.question)}
+        </h2>
+      </div>
       
       <div className="space-y-3">
         {shuffledAnswers.map((answer, index) => (
           <button
             key={index}
             onClick={() => onSelectAnswer(answer)}
-            className={`w-full py-3 px-4 border rounded-lg text-left transition-colors ${
+            className={`w-full py-4 px-5 border-2 rounded-lg text-left transition-all duration-200 flex items-center ${
               selectedAnswer === answer
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-50'
+                ? 'bg-indigo-600 text-white border-indigo-600 shadow-md'
+                : 'bg-white text-gray-800 border-gray-200 hover:bg-indigo-50 hover:border-indigo-300'
             }`}
           >
-            {decodeHTML(answer)}
+            <span className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 text-sm ${
+              selectedAnswer === answer 
+                ? 'bg-white text-indigo-600' 
+                : 'bg-gray-100 text-gray-600'
+            }`}>
+              {String.fromCharCode(65 + index)}
+            </span>
+            <span className="flex-1">{decodeHTML(answer)}</span>
           </button>
         ))}
       </div>

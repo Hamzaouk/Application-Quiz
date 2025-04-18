@@ -30,15 +30,17 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
-      <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-700 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full border border-purple-100">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Trivia Master</h1>
-          <p className="text-gray-600 mt-2">Test your knowledge with fun trivia questions!</p>
+          <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Trivia Master
+          </div>
+          <p className="text-gray-600 mt-2 text-lg">Challenge yourself with exciting trivia!</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
+          <div className="relative">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               Enter Your Name
             </label>
@@ -50,23 +52,30 @@ const HomePage = () => {
                 setName(e.target.value);
                 setError('');
               }}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
               placeholder="Your name"
             />
-            {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+            {error && <p className="mt-1 text-sm text-red-600 font-medium">{error}</p>}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 font-medium shadow-md"
           >
             Start Quiz
           </button>
         </form>
 
         {name && (
-          <div className="mt-4 text-center text-sm text-gray-600">
-            Welcome back, {name}! Ready for another challenge?
+          <div className="mt-6 text-center">
+            <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+              <p className="text-indigo-800 font-medium">
+                Welcome back, {name}!
+              </p>
+              <p className="text-indigo-600 text-sm mt-1">
+                Ready for another challenge?
+              </p>
+            </div>
           </div>
         )}
       </div>
